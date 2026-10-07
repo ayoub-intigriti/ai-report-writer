@@ -1,0 +1,16 @@
+{
+  "name": "intigriti",
+  "description": "Intigriti plugins for bug bounty hunters.",
+  "owner": {
+    "name": "INTIGRITI"
+  },
+  "plugins": [
+    {
+      "name": "ai-report-writer",
+      "source": "./",
+      "description": "Write clear, well-structured bug bounty vulnerability reports that triagers can reproduce on the first try.",
+      "version": "1.0.0",
+      "category": "security"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "intigriti",
+  "interface": {
+    "displayName": "Intigriti"
+  },
+  "plugins": [
+    {
+      "name": "ai-report-writer",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ai-report-writer",
+  "version": "1.0.0",
+  "description": "Write clear, well-structured bug bounty vulnerability reports that triagers can reproduce on the first try.",
+  "author": {
+    "name": "Intigriti",
+    "url": "https://www.intigriti.com"
+  },
+  "homepage": "https://github.com/intigriti/ai-report-writer",
+  "repository": "https://github.com/intigriti/ai-report-writer",
+  "keywords": ["bug-bounty", "security", "vulnerability-report", "intigriti", "triage"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Intigriti Report Writer",
+        "shortDescription": "Write clear, triage-ready vulnerability reports",
+        "longDescription": "Turn a validated finding into a concise bug bounty report: structured title, short description, reproducible steps, evidence-based impact and honest severity. Also reviews existing drafts against Intigriti's report-writing guidance.",
+        "developerName": "Intigriti",
+        "category": "Productivity",
+        "websiteURL": "https://www.intigriti.com",
+        "defaultPrompt": [
+          "Write up this IDOR finding as a bug bounty report.",
+          "Review my vulnerability report draft before I submit it."
+        ]
+      }
+    }
+  }
+}
