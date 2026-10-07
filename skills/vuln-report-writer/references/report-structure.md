@@ -59,7 +59,7 @@ Most programs prohibit disruptive testing, so don't fully exploit SQL injection 
 
 ## 5. Severity
 
-Honest and evidence-based. Check the program's severity guidelines; fall back on CVSS. Inflating Medium/Low findings to Critical/Exceptional doesn't raise the bounty; it slows triage and erodes trust. Accurate severities build credibility with triage teams.
+Honest and evidence-based, and always explained. Provide both a CVSS v3.1 and a CVSS v4.0 vector with scores, a short per-metric rationale, and one line on the overall rating — see [severity.md](severity.md) for the metrics and Intigriti's triage standards. Check the program's own severity guidelines first; they override CVSS. Inflating Medium/Low findings to Critical doesn't raise the bounty; it slows triage and erodes trust. Accurate severities build credibility with triage teams.
 
 ## 6. Attachments
 
@@ -98,7 +98,9 @@ Never use YouTube, Dropbox, Google Drive, Mega.nz or similar third-party hosts; 
 <What an attacker can demonstrably do, based on the evidence above.>
 
 ## Severity
-<Rating> (CVSS 3.1: <vector>, <score>), <one sentence why>
+**<Rating> — <score>** · `CVSS:3.1/<vector>`
+**<Rating> — <score>** · `CVSS:4.0/<vector>`
+<one sentence why, in the program's context>
 
 ## Attachments
 - <screenshot-1.png: description>

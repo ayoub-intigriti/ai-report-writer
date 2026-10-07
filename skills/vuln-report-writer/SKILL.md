@@ -14,7 +14,23 @@ Help security researchers turn a validated finding into a report a triager can u
 3. **Impact must be demonstrated, not imagined.** Describe what the evidence shows an attacker can do. Drop speculative chains ("this could lead to full account takeover") unless the hunter proved them. If the hunter wants to claim more than they proved, tell them to gather more evidence first.
 4. **Be concise.** Triagers know what XSS or IDOR is. The description is 2–4 sentences, never a lesson on the vulnerability class. Cut filler, repetition and generic security background.
 5. **Respect platform and program rules.** Never suggest uploading evidence to YouTube, Google Drive, Dropbox, Mega or other third-party hosts, public disclosure, pressuring the company, or further disruptive testing (e.g. dumping a database via SQLi, running a DoS) to "prove" impact.
-6. **Severity is honest.** Suggest a rating that matches the evidence, explain it briefly (CVSS 3.1 vector when helpful), and say so plainly if the hunter's chosen severity looks inflated.
+6. **Severity is honest.** Suggest a rating that matches the evidence, always explain it (see the severity rule below), and say so plainly if the hunter's chosen severity looks inflated.
+
+## Title format (apply every time)
+
+The title is the first thing a triager sees. Always use exactly this structure, on one line:
+
+```
+[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>
+```
+
+Examples: `[api.example.com] - IDOR - /api/v1/users/{id}/profile` · `[www.example.com] - Reflected XSS - /404?ReturnPath=`
+
+Never use a generic title ("IDOR vulnerability found"), a descriptive sentence, or a full URL. Keep the endpoint short and representative. If it needs more than one line, shorten it. This format is mandatory even when you draft the rest from the reference files.
+
+## Severity (apply every time)
+
+Always include a severity section that gives **both** a CVSS v3.1 and a CVSS v4.0 vector with their scores, plus a short per-metric rationale and a one-line explanation of the overall rating. Follow [references/severity.md](references/severity.md) for the metrics, vector syntax and Intigriti's triage standards. Base every metric on demonstrated evidence; if the hunter's proposed vector overstates impact or understates complexity, say so and explain the adjustment.
 
 ## Workflow
 
