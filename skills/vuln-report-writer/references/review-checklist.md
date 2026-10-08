@@ -24,10 +24,13 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Description is 2–4 sentences, no vulnerability-class lecture
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
-- [ ] Severity scored at the highest impact the evidence supports, with "may score lower if… (§clause)" caveats; both CVSS v3.1 and v4.0 vectors given; rationale table includes SC/SI/SA (— for v3.1)
+- [ ] Severity scored at the highest impact the evidence supports, with "may score lower if… (§clause)" caveats; both CVSS v3.1 and v4.0 vectors given; rationale table includes SC/SI/SA (— for v3.1); vector + rating only, no hand-computed number
+- [ ] PR set by account model (PR:N self-signup / PR:L invite-only tenant / PR:H full admin); AC:H for unguessable value with no shown source (v4.0 AT:P), AC:L if predictable
+- [ ] Severity reasoning is under the Severity block only, not in Impact
 - [ ] Every Intigriti standard/ruling claim cites its clause (section number + name + link)
 - [ ] Output follows the submission-form order; endpoint includes the host and uses `<>` for positional params; vulnerability type is an exact label from cwe-types.md
 - [ ] Observed result describes what's returned AND references the evidence (no "you should see the response")
+- [ ] Steps are one action per line; image placeholders added after complex steps
 - [ ] PoC/description content uses Markdown (`##` headings, lists)
 - [ ] Each field is its own code block; PoC/description uses a four-backtick fence; severity rationale + clause also folded into Impact
 - [ ] Recommended solution is 1–2 sentences; researcher reminded about mandatory submission questions

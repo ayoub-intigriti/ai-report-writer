@@ -8,6 +8,23 @@ Default to the **maximum impact the PoC actually demonstrates** — Intigriti's 
 
 Example: for an access-control bypass returning private data, score Confidentiality **High**, then note: *"if the response only exposes data already public, a triager may drop Confidentiality to Low per §3.1.6."* Never invent impact beyond the evidence (rule 3) — "highest supported by evidence" is not "speculative."
 
+## Metric conventions (apply these automatically)
+
+These resolve the metrics researchers most often get wrong. They follow the CVSS definitions (https://www.first.org/cvss/v3.1/specification-document, https://www.first.org/cvss/specification-document).
+
+**Privileges Required (PR)** — set by how the attacker obtains the account, not by whether one is used:
+- **PR:N** — no privilege the target controls is needed. If the app allows **open self-registration**, anyone can create an account, so holding a normal account is not a real barrier → PR:N. (CVSS: the attacker is "unauthorized prior to attack".)
+- **PR:L** — privileges the attacker **cannot self-obtain**: membership of a tenant they must be **invited** to, or a basic role granted by someone else.
+- **PR:H** — **full administrative** control over the vulnerable component is required.
+
+**Attack Complexity (AC) — unguessable values:**
+- Exploitation needs an ID, token or value that is **not guessable** (e.g. a UUID or random token) and the researcher gives **no evidence** of how an attacker obtains it → **AC:H** (CVSS AC:H = the attacker must gather target-specific information that is not readily available).
+- The value is **predictable** (sequential/numeric ID, enumerable) → **AC:L**.
+- In **CVSS v4.0** this precondition is an Attack Requirement, not complexity: use **AT:P** for the unguessable-with-no-known-source case and **AT:N** when predictable; keep AC:L unless there is genuine execution complexity.
+
+## Do not hand-compute the number
+Output the **vector and the qualitative rating**; the exact numeric score comes from the official FIRST calculator (the researcher pastes the vector in). Hand-calculating, especially for v4.0's lookup-table scoring, is error-prone, so don't print a fabricated number.
+
 ## Always cite the clause you rely on
 
 Whenever you state something as an Intigriti standard or ruling — a multi-tenant scoring rule, a pre-set severity, the PoC requirement — **cite the specific clause**: its section number and name plus the link, e.g. "Triage Standards §6.1 (Open redirect) — https://kb.intigriti.com/en/articles/10335710-intigriti-triage-standards". Never assert a policy claim without the reference, so the researcher can verify it. (The page has no per-heading anchors, so cite the section number; don't invent anchor fragments.) Relevant sections: §1.1 PoC-based scoring, §1.2 vulnerability-type scoring, §3.1.6 Confidentiality / §3.1.7 Integrity (multi-tenant notes), §6 Rulings and exceptions.
@@ -16,8 +33,9 @@ Whenever you state something as an Intigriti standard or ruling — a multi-tena
 
 ```markdown
 ## Severity
-**<Rating> — <v3.1 score>** · `CVSS:3.1/AV:.../A:.`
-**<Rating> — <v4.0 score>** · `CVSS:4.0/AV:.../SA:.`
+`CVSS:3.1/AV:.../A:.` → <Rating>
+`CVSS:4.0/AV:.../SA:.` → <Rating>
+(Paste each vector into the FIRST calculator for the exact score.)
 
 | Metric | v3.1 | v4.0 | Why |
 |---|---|---|---|

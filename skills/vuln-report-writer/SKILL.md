@@ -32,7 +32,7 @@ Never use a generic title, a descriptive sentence, or a full URL; keep the endpo
 
 ## Severity (apply every time)
 
-Always include a severity section with **both** a CVSS v3.1 and v4.0 vector, scores, and a per-metric rationale table (include the v4.0 Subsequent-System rows SC/SI/SA, marked `—` for v3.1). See [references/severity.md](references/severity.md). **Score the highest impact the evidence supports** — don't pre-apply downgrades — then add a "a triager may score lower if… (§clause)" caveat. **Cite any Intigriti standard or ruling by its specific clause — section number + name + link — never a bare claim.**
+Always include a severity section with **both** a CVSS v3.1 and v4.0 vector and a per-metric rationale table (include the v4.0 SC/SI/SA rows, marked `—` for v3.1). Give the vector and qualitative **rating only — don't hand-compute the number** (the researcher gets it from the calculator). See [references/severity.md](references/severity.md). **Score the highest impact the evidence supports** — don't pre-apply downgrades — then add a "a triager may score lower if… (§clause)" caveat. Apply its metric conventions — PR by how the account is obtained (PR:N self-signup, PR:L invite-only, PR:H full admin), and AC:H for an unguessable value with no shown source (v4.0 AT:P). Keep the reasoning under the Severity block, **not** in Impact. **Cite any Intigriti standard or ruling by its clause — section number + name + link.**
 
 ## Workflow
 
@@ -55,7 +55,7 @@ Also flag early:
 - Use of real users' data instead of the hunter's own or program-provided test accounts.
 
 ### 2. Draft and save the report
-Follow [references/report-structure.md](references/report-structure.md): submission-form order, **each field as its own fenced code block** (four-backtick fence where the content holds its own ``` block). That file has the field rules; the ones most often missed: endpoint **includes the host** and uses `<>` not `{}` for positional params; vulnerability type is an **exact label from [references/cwe-types.md](references/cwe-types.md)**; the PoC/description is a **Markdown** field (`##` headings, lists); **Observed result** describes what's returned *and* cites the evidence, never "you should see the response". **Also save the whole report as `intigriti-report-<slug>.md`.** Keep the reply short: the `[TODO]`s and fixes.
+Follow [references/report-structure.md](references/report-structure.md): submission-form order, **each field as its own fenced code block** (four-backtick fence where the content holds its own ``` block). That file has the field rules; the ones most often missed: endpoint **includes the host** and uses `<>` not `{}` for positional params; vulnerability type is an **exact label from [references/cwe-types.md](references/cwe-types.md)**; the PoC/description is a **Markdown** field (`##` headings, lists); steps are **one action per line**, with an image placeholder `<!-- Add screenshot of <PAGE/action/HTTP response> -->` after complex steps; **Observed result** describes what's returned *and* cites the evidence, never "you should see the response". **Also save the whole report as `intigriti-report-<slug>.md`.** Keep the reply short: the `[TODO]`s and fixes.
 
 ### 3. Self-check before handing it back
 Run the checklist in [references/review-checklist.md](references/review-checklist.md), then add a short **"Before you submit"** note listing any `[TODO]`s and reminding the hunter to re-run every step; they submit a validated report.
