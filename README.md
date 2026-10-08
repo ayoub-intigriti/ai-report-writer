@@ -16,8 +16,7 @@ It's built on Intigriti's report-writing guidance:
 - Reviews an existing draft and lists what to fix before you submit
 - Follows Intigriti's Community Code of Conduct (e.g. no third-party evidence hosting)
 
-> [!IMPORTANT]
-> You stay responsible for validating your finding and re-running every step before you submit.
+You stay responsible for validating your finding and re-running every step before you submit.
 
 ## Install
 
@@ -67,6 +66,10 @@ Just describe your finding. The skill activates automatically:
     ├── SKILL.md                   # Core instructions
     └── references/
         ├── report-structure.md    # Section-by-section guide and template
+        ├── severity.md            # CVSS v3.1 + v4.0, triage standards, rulings
+        ├── cwe-types.md           # Intigriti's accepted vulnerability-type labels
+        ├── ste.md                 # Simplified Technical English (ASD-STE100) rules
+        ├── code-of-conduct.md     # Report-relevant Community Code of Conduct rules
         ├── review-checklist.md    # Pre-submission checklist
         ├── ai-pitfalls.md         # Common problems in AI-written reports
         └── example-report.md      # Weak vs. good report

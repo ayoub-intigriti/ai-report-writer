@@ -2,6 +2,12 @@
 
 Give an honest rating backed by the evidence, and always **explain** it. Provide both a CVSS v3.1 and a CVSS v4.0 vector with scores, a short rationale per base metric, and one line on the overall rating. If the program sets its own severity scheme or scope, that overrides CVSS.
 
+## Score the highest impact the evidence supports, then flag caveats
+
+Default to the **maximum impact the PoC actually demonstrates** — Intigriti's PoC-based scoring considers the greatest demonstrated impact (Triage Standards §1.1). Do **not** pre-apply downgrades (multi-tenant rulings, AC complexity, §6 rulings) into the score. Score the high case, then add a short **"a triager may score this lower if…"** caveat naming the factor and citing the clause, so the researcher knows the risk without under-selling the finding. This is the opposite of scoring conservatively and saying "may need upgrading."
+
+Example: for an access-control bypass returning private data, score Confidentiality **High**, then note: *"if the response only exposes data already public, a triager may drop Confidentiality to Low per §3.1.6."* Never invent impact beyond the evidence (rule 3) — "highest supported by evidence" is not "speculative."
+
 ## Always cite the clause you rely on
 
 Whenever you state something as an Intigriti standard or ruling — a multi-tenant scoring rule, a pre-set severity, the PoC requirement — **cite the specific clause**: its section number and name plus the link, e.g. "Triage Standards §6.1 (Open redirect) — https://kb.intigriti.com/en/articles/10335710-intigriti-triage-standards". Never assert a policy claim without the reference, so the researcher can verify it. (The page has no per-heading anchors, so cite the section number; don't invent anchor fragments.) Relevant sections: §1.1 PoC-based scoring, §1.2 vulnerability-type scoring, §3.1.6 Confidentiality / §3.1.7 Integrity (multi-tenant notes), §6 Rulings and exceptions.
@@ -16,10 +22,22 @@ Whenever you state something as an Intigriti standard or ruling — a multi-tena
 | Metric | v3.1 | v4.0 | Why |
 |---|---|---|---|
 | Attack Vector | N | N | Exploitable remotely over the API |
-| ... | | | |
+| Attack Complexity | L/H | L/H | ... |
+| Attack Requirements | — | N/P | v4.0 only |
+| Privileges Required | N/L/H | N/L/H | ... |
+| User Interaction | N/R | N/P/A | ... |
+| Scope | U/C | — | v3.1 only |
+| Confidentiality (Vuln. System) | C | VC | ... |
+| Integrity (Vuln. System) | I | VI | ... |
+| Availability (Vuln. System) | A | VA | ... |
+| Subsequent Confidentiality | — | SC | v4.0 only |
+| Subsequent Integrity | — | SI | v4.0 only |
+| Subsequent Availability | — | SA | v4.0 only |
 
-<One sentence explaining the overall rating in the program's context.>
+<One sentence on the overall rating, then any "a triager may score lower if… (§clause)" caveats.>
 ```
+
+Always include the three Subsequent-System rows (SC/SI/SA); they are v4.0-only, so mark the v3.1 column `—`. Likewise Scope is v3.1-only and Attack Requirements v4.0-only.
 
 Only include a metric value you can justify from the evidence. If the hunter's proposed vector overstates impact or understates complexity, adjust it and say why.
 

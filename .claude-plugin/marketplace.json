@@ -9,7 +9,7 @@
       "name": "ai-report-writer",
       "source": "./",
       "description": "Write clear, well-structured bug bounty vulnerability reports that triagers can reproduce on the first try.",
-      "version": "1.5.0",
+      "version": "1.7.0",
       "category": "security"
     }
   ]

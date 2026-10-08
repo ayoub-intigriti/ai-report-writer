@@ -24,12 +24,15 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Description is 2–4 sentences, no vulnerability-class lecture
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
-- [ ] Severity matches the evidence, the program's guidelines, and any standing ruling; both CVSS v3.1 and v4.0 vectors given and explained
+- [ ] Severity scored at the highest impact the evidence supports, with "may score lower if… (§clause)" caveats; both CVSS v3.1 and v4.0 vectors given; rationale table includes SC/SI/SA (— for v3.1)
 - [ ] Every Intigriti standard/ruling claim cites its clause (section number + name + link)
-- [ ] Output follows the submission-form order; endpoint derived from the PoC; vulnerability type given as a CWE
+- [ ] Output follows the submission-form order; endpoint includes the host and uses `<>` for positional params; vulnerability type is an exact label from cwe-types.md
+- [ ] Observed result describes what's returned AND references the evidence (no "you should see the response")
+- [ ] PoC/description content uses Markdown (`##` headings, lists)
 - [ ] Each field is its own code block; PoC/description uses a four-backtick fence; severity rationale + clause also folded into Impact
 - [ ] Recommended solution is 1–2 sentences; researcher reminded about mandatory submission questions
 - [ ] Screenshots referenced in the steps are listed in attachments
 - [ ] Script dependencies are minimal and from official sources
-- [ ] English, professional and respectful tone
+- [ ] Prose is in Simplified Technical English (ASD-STE100): short active sentences, one instruction each, simple tenses; requests/payloads/vectors/labels left verbatim
+- [ ] Professional and respectful tone
 - [ ] No leftover `[TODO]` placeholders (or they're called out to the hunter)
