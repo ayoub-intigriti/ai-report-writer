@@ -1,90 +1,39 @@
 # Report structure
 
-Every report has six parts. Keep each one as short as it can be while still letting a triager reproduce the issue without guesswork.
+Output the report as **Markdown**, in the exact order of Intigriti's submission form, so the researcher can copy each section straight into the matching field. Use the headers below verbatim. Keep every part as short as it can be while still letting a triager reproduce the finding without guesswork.
 
-## 1. Title
+Field 2 (Asset) is chosen from a radio list in the UI, so there is nothing to generate for it — skip it.
 
-Format:
-
-```
-[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>
-```
-
-Good:
-- `[www.example.com] - Reflected XSS - /404?ReturnPath=`
-- `[api.example.com] - IDOR - /api/v1/users/{id}/profile`
-- `[app.example.com] - SQL Injection - /search?query=`
-
-Avoid:
-- Generic titles: "XSS vulnerability found", "Security issue on login page"
-- Full URLs in the title; use a short, representative endpoint
-- Titles longer than one line
-
-## 2. Description
-
-2–4 sentences:
-1. What behavior was observed and the vulnerability type.
-2. Why it shouldn't be possible / how it can be abused.
-
-Don't explain how the vulnerability class works in general. Just enough context to follow the steps.
-
-## 3. Steps to reproduce (most important section)
-
-The triager should reproduce the finding by following the steps exactly, with no extra context. Assume they're opening the target for the first time.
-
-**Requirements** (list first, if any):
-- Accounts and roles needed (e.g. two standard accounts, Attacker and Victim; or admin + standard user)
-- Any special configuration
-- How to obtain required tokens (JWT, anti-CSRF token, API key)
-
-**Navigation**: give the exact UI path, e.g. "Navigate to Settings > Integrations > API Keys".
-
-**Steps**: numbered, factually correct, in exact execution order. Include parameter values, headers and payloads that matter. No unnecessary steps or verbose logs. Give the **simplest path to reproduction** — Intigriti's Triage Standards require "the simplest possible demonstration that proves the vulnerability's exploitability and impact beyond reasonable doubt." Validate the steps yourself first, ideally with fresh test accounts or a clean instance.
-
-**Raw requests and scripts**:
-- Always include the raw HTTP (or TCP) request(s), even when a script is attached, so the finding can be validated without running the script.
-- Scripts should have minimal dependencies and nothing from unofficial or untrusted package sources.
-
-**Evidence**: screenshots for every key step (they keep the report valid if the issue later stops reproducing). Video PoCs are encouraged and some programs require them.
-
-## 4. Impact
-
-Short and specific: what an attacker can realistically do, based on the evidence.
-- Reflected XSS: can they steal session cookies (are they HttpOnly?), act on behalf of the victim, redirect them?
-- IDOR: exactly what data is exposed or which actions can be taken on another user's behalf?
-
-Never overstate. No speculative attack scenarios. Severity is mostly determined by the evidence provided.
-
-Most programs prohibit disruptive testing, so don't fully exploit SQL injection or DoS issues to prove impact. Demonstrate the minimum that proves the issue (e.g. a version string or boolean/time-based difference) and state that you stopped there per program rules. In that case the triager scores on potential impact rather than the evidence, and the company may adjust severity once it has gathered more information.
-
-## 5. Severity
-
-Honest and evidence-based, and always explained. Provide both a CVSS v3.1 and a CVSS v4.0 vector with scores, a short per-metric rationale, and one line on the overall rating — see [severity.md](severity.md) for the metrics and Intigriti's triage standards. Check the program's own severity guidelines first; they override CVSS. Inflating Medium/Low findings to Critical doesn't raise the bounty; it slows triage and erodes trust. Accurate severities build credibility with triage teams.
-
-## 6. Attachments
-
-Everything in one place, uploaded to the platform: PoC scripts, every screenshot referenced in the steps, video where applicable, raw HTTP requests.
-
-Never use YouTube, Dropbox, Google Drive, Mega.nz or similar third-party hosts; it's against Intigriti's Community Code of Conduct because evidence can contain sensitive data. If a file can't be uploaded to the platform due to technical limits, put it in a password-protected ZIP in a secure location and include the password in the report. When in doubt, ask the platform first.
-
-## Template
+## Output template
 
 ~~~markdown
-**Title:** [<asset>] - <vulnerability type> - <endpoint>
+### 1. Title
+`[<asset>] - <vulnerability type> - <endpoint>`
 
-## Description
-<What you observed and the vulnerability type. Why it shouldn't be possible.>
+### 3. Endpoint / vulnerable component
+<derived from the PoC — see rules below>
 
-## Steps to reproduce
+### 4. Vulnerability type (CWE)
+<CWE-ID — name>, e.g. `CWE-639 — Authorization Bypass Through User-Controlled Key`
+
+### 5. Severity
+**<Rating> — <score>** · `CVSS:3.1/<vector>`
+**<Rating> — <score>** · `CVSS:4.0/<vector>`
+<one sentence on the overall rating; cite any triage-standards clause you rely on — see severity.md>
+
+### 6.1 Attachments
+- <screenshot-1.png: what it shows>
+- <poc-video.mp4: what it shows>
+
+### 6.2 Proof of Concept / description
+<2–4 sentence description: observed behavior + why it shouldn't be possible.>
 
 **Requirements**
-- <accounts / roles / config>
-- <how to obtain any required token>
+- <accounts / roles / config; how to obtain any token>
 
 **Steps**
 1. Navigate to <UI path>.
 2. <exact action, with parameter values>
-3. <...>
 
 **Request**
 ```http
@@ -94,20 +43,46 @@ Never use YouTube, Dropbox, Google Drive, Mega.nz or similar third-party hosts; 
 **Observed result**
 <what the response/screen shows; reference screenshot names>
 
-## Impact
+### 6.3 Impact
 <What an attacker can demonstrably do, based on the evidence above.>
 
-## Severity
-**<Rating> — <score>** · `CVSS:3.1/<vector>`
-**<Rating> — <score>** · `CVSS:4.0/<vector>`
-<one sentence why, in the program's context>
+### 6.4 Recommended solution
+<1–2 sentences, no more.>
 
-## Attachments
-- <screenshot-1.png: description>
-- <poc-video.mp4: description>
+### 7. Submission questions
+<If the program sets mandatory submission questions (e.g. public IP, time of testing), remind the researcher to fill them in — a missing mandatory answer can incur a bounty penalty. You cannot see these; tell the researcher to check the form.>
 
 ---
 *This report was generated by Intigriti AI Report Writer for Claude.*
 ~~~
 
 (Replace "Claude" with whichever assistant is running the skill: Claude, ChatGPT or Codex.)
+
+## Field rules
+
+### 1. Title
+`[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>`, one line. Good: `[api.example.com] - IDOR - /api/v1/users/{id}/profile`. No generic titles, no descriptive sentences, no full URLs.
+
+### 3. Endpoint / vulnerable component
+Derive this from the PoC — don't ask if you can read it off the request:
+- Multiple endpoints → separate with commas.
+- When the injection point is a request-body parameter or a header, use a pipe: `www.example.com/login.php | returnUrl=<PAYLOAD>`.
+- Keep it to the path and the vulnerable parameter; drop the scheme/host when the asset field already carries them, unless needed for clarity.
+
+### 4. Vulnerability type (CWE)
+Pick the CWE that matches the finding, preferring one that appears in the program's Type list. Common mappings: IDOR/broken access control → CWE-639 (or CWE-862 Missing Authorization); Reflected/Stored XSS → CWE-79; SQL Injection → CWE-89; SSRF → CWE-918; CSRF → CWE-352; Open redirect → CWE-601; XXE → CWE-611; Insecure deserialization → CWE-502; LFI → CWE-98; OS command injection → CWE-78; Information disclosure → CWE-200. If unsure between two, name both and let the researcher choose.
+
+### 5. Severity
+Both CVSS v3.1 and v4.0 vectors with scores and a short rationale — see [severity.md](severity.md). Whenever you invoke an Intigriti standard or ruling, cite the specific clause.
+
+### 6.2 Proof of Concept / description
+The form merges description and PoC into one field, so put them together here. Description is 2–4 sentences, no lecture on the vulnerability class. Then requirements, numbered steps (the **simplest path to reproduction**, per Triage Standards §1.1), the raw HTTP/TCP request verbatim, and the observed result. Validate the steps yourself first, ideally with fresh test accounts or a clean instance. Scripts: minimal dependencies, nothing from untrusted sources, and always include the raw request even when a script is attached.
+
+### 6.3 Impact
+Short and specific: what an attacker can demonstrably do, based on the evidence. Never overstate; no speculative scenarios. For issues where program rules forbid disruptive testing, demonstrate the minimum and note you stopped there — the triager then scores on potential impact and the company may adjust severity later (Triage Standards §1.2).
+
+### 6.4 Recommended solution
+Optional in the form; keep to 1–2 sentences max.
+
+### Attachments
+Everything uploaded to the platform: PoC scripts, every screenshot referenced in the steps, video where applicable, raw requests. Never third-party hosts — see [code-of-conduct.md](code-of-conduct.md).

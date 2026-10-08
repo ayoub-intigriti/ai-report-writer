@@ -24,6 +24,9 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
 - [ ] Severity matches the evidence, the program's guidelines, and any standing ruling; both CVSS v3.1 and v4.0 vectors given and explained
+- [ ] Every Intigriti standard/ruling claim cites its clause (section number + name + link)
+- [ ] Output follows the submission-form order; endpoint derived from the PoC; vulnerability type given as a CWE
+- [ ] Recommended solution is 1–2 sentences; researcher reminded about mandatory submission questions
 - [ ] Screenshots referenced in the steps are listed in attachments
 - [ ] Script dependencies are minimal and from official sources
 - [ ] English, professional and respectful tone
