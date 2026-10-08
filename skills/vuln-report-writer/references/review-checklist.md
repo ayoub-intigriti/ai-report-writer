@@ -16,7 +16,8 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] No disruptive testing beyond what's needed to prove the issue
 - [ ] Steps give the simplest path to reproduction
 - [ ] Live credentials and PII redacted in requests and screenshots
-- [ ] AI-assistance disclosure line included
+- [ ] AI-assistance disclosure line is the first sentence of the PoC/description section
+- [ ] Report saved as a Markdown file and handed to the researcher
 
 ## Quality issues
 - [ ] Title follows `[asset] - type - endpoint`, one line, no full URL
@@ -26,6 +27,7 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Severity matches the evidence, the program's guidelines, and any standing ruling; both CVSS v3.1 and v4.0 vectors given and explained
 - [ ] Every Intigriti standard/ruling claim cites its clause (section number + name + link)
 - [ ] Output follows the submission-form order; endpoint derived from the PoC; vulnerability type given as a CWE
+- [ ] Each field is its own code block; PoC/description uses a four-backtick fence; severity rationale + clause also folded into Impact
 - [ ] Recommended solution is 1–2 sentences; researcher reminded about mandatory submission questions
 - [ ] Screenshots referenced in the steps are listed in attachments
 - [ ] Script dependencies are minimal and from official sources
