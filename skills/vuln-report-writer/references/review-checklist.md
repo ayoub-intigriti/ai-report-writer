@@ -14,13 +14,16 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Testing used the hunter's own or program-provided test accounts
 - [ ] No evidence hosted on third-party services (YouTube, Drive, Dropbox, Mega, ...)
 - [ ] No disruptive testing beyond what's needed to prove the issue
+- [ ] Steps give the simplest path to reproduction
+- [ ] Live credentials and PII redacted in requests and screenshots
+- [ ] AI-assistance disclosure line included
 
 ## Quality issues
 - [ ] Title follows `[asset] - type - endpoint`, one line, no full URL
 - [ ] Description is 2–4 sentences, no vulnerability-class lecture
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
-- [ ] Severity matches the evidence and the program's guidelines
+- [ ] Severity matches the evidence, the program's guidelines, and any standing ruling; both CVSS v3.1 and v4.0 vectors given and explained
 - [ ] Screenshots referenced in the steps are listed in attachments
 - [ ] Script dependencies are minimal and from official sources
 - [ ] English, professional and respectful tone

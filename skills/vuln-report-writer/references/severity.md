@@ -70,7 +70,23 @@ Nomenclature: **CVSS-B** base only, **CVSS-BT** base+threat, **CVSS-BE** base+en
 - **Platform severity ≠ company risk.** The score reflects demonstrated technical impact, not the asset's business importance. Program descriptions, scope and any custom scoring the program sets override the platform standard.
 - **Multi-tenant systems**: a partial access-control bypass is usually scored Low confidentiality/integrity unless impact spans a whole tenant or the data is a significant risk to the core business.
 - **Speculative issues** (test environments, unused/unreachable code, low-entropy secrets with no shown exploit) are judged case by case and are often marked **Undecided** — provide evidence rather than assertion.
-- A few **set rulings** scored Low on their own unless chained or shown to expose critical data: open redirect, content/HTML/CSS injection, broken link hijacking, debug/path disclosure, standalone WAF bypass, cookie-bombing DoS.
 - **Chains** can be scored on combined impact when unique and unreported. Don't hoard a finding more than 48 hours. A duplicate is only reassessed if it shows additional impact.
+- The required PoC is *"the simplest possible demonstration that proves the vulnerability's exploitability and impact beyond reasonable doubt."* Score against what that demonstration shows.
+
+### Rulings and exceptions (pre-set severities)
+
+Always read the program description first — some programs set their own severities for certain vulnerability types, and those prevail. Intigriti's standing rulings (these can change, so re-check the live standards):
+
+| Vulnerability type | Default | Exception |
+|---|---|---|
+| Open redirect (external redirect only, no other purpose) | Low | — |
+| Content / HTML / CSS injection | Low | Unless critical confidential data can be stolen (e.g. dangling markup) |
+| Broken link hijacking | Low | Integrity counts if a server-side component uses the URL to an attacker's benefit |
+| Debug / path / limited source-code disclosure | Low | Unless the PoC shows the data can be leveraged |
+| Invalidation (purging caches/buffers) | Low | If it creates business risk |
+| WAF bypass | Low | Unless further impact on the protected app is shown |
+| Cookie-bombing DoS | Low | — |
+
+If the finding is one of these, score it accordingly and don't inflate it; note the ruling in the report so the triager sees you've accounted for it.
 
 Always double-check against the live standards and the specific program's rules before submitting: https://kb.intigriti.com/en/articles/10335710-intigriti-triage-standards
