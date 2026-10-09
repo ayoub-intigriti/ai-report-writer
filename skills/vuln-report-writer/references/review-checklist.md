@@ -28,7 +28,12 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] PR set by account model (PR:N self-signup / PR:L invite-only tenant / PR:H full admin); AC:H for unguessable value with no shown source (v4.0 AT:P), AC:L if predictable
 - [ ] Severity reasoning is under the Severity block only, not in Impact
 - [ ] Every Intigriti standard/ruling claim cites its clause (section number + name + link)
-- [ ] Output follows the submission-form order; endpoint includes the host and uses `<>` for positional params; vulnerability type is an exact label from cwe-types.md
+- [ ] No disclosure content anywhere (no timeline, no "responsible disclosure" section, nothing proposing/scheduling disclosure)
+- [ ] No filler notes (nothing stating the absence of something irrelevant); non-applicable sections omitted
+- [ ] Output follows the submission-form order; vulnerability type is an exact label from cwe-types.md
+- [ ] Endpoint: web = host + path, no protocol, `<>` for positional params; product/non-web = product download URL (or `[TODO]`)
+- [ ] Product/non-web findings include the `### Environment` block (product+version, OS+version, architecture, dependencies; `[TODO]` for gaps)
+- [ ] A download step has its link, or a `[TODO: download URL]`; hardware-dependent repro has a `[TODO: video PoC]`
 - [ ] Observed result describes what's returned AND references the evidence (no "you should see the response")
 - [ ] Steps are one action per line; image placeholders added after complex steps
 - [ ] PoC/description content uses Markdown (`##` headings, lists)

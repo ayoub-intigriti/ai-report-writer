@@ -19,6 +19,7 @@ From Intigriti's Community Code of Conduct. These are the parts that affect what
 - Redact live credentials (tokens, cookies, API keys) in requests and screenshots.
 
 ## Disclosure and communication
+- **Never suggest or promote disclosure in a report.** Do not add a disclosure timeline, a "responsible/coordinated disclosure" section, or any text that proposes, schedules or encourages publication. Disclosure happens only by mutual agreement reached between the company and the researcher — it is never part of the submission.
 - **No public disclosure** (titles, vuln type, endpoints, bounty amounts, company name) without written approval from both Intigriti and the company, requested as a report comment.
 - Keep submission details private until approved.
 - Professional language only. No extortion, blackmail or "beg bounty." Don't pressure or flood triagers; request updates no more than every 30 days and use mediation for disputes.
