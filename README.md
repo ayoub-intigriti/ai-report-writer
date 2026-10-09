@@ -65,14 +65,16 @@ Just describe your finding. The skill activates automatically:
 └── skills/vuln-report-writer/
     ├── SKILL.md                   # Core instructions
     └── references/
-        ├── report-structure.md    # Section-by-section guide and template
+        ├── report-structure.md    # Shared report skeleton (field order, output)
+        ├── web.md                 # Web-flavor fields (endpoint, request)
+        ├── product.md             # Product/non-web fields (download URL, environment, commands)
         ├── severity.md            # CVSS v3.1 + v4.0, triage standards, rulings
         ├── cwe-types.md           # Intigriti's accepted vulnerability-type labels
         ├── ste.md                 # Simplified Technical English (ASD-STE100) rules
         ├── code-of-conduct.md     # Report-relevant Community Code of Conduct rules
         ├── review-checklist.md    # Pre-submission checklist
         ├── ai-pitfalls.md         # Common problems in AI-written reports
-        └── example-report.md      # Weak vs. good report
+        └── example-report.md      # Weak vs. good report (web)
 ```
 
 To update the guidance, edit the files in `skills/vuln-report-writer/` and bump `version` in both `plugin.json` files.

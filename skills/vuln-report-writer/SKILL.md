@@ -28,18 +28,22 @@ Always use exactly this structure, on one line:
 [<ASSET>] - <Vulnerability Type> - <Endpoint or short description>
 ```
 
-Example: `[api.example.com] - IDOR - /api/v1/users/{id}/profile`
+Example: `[api.example.com] - IDOR - /api/v1/users/<id>/profile`
 
 Never use a generic title, a descriptive sentence, or a full URL; keep the endpoint short. This format is mandatory even when drafting the rest from reference files.
 
 ## Severity (apply every time)
 
-Always include a severity section with **both** a CVSS v3.1 and v4.0 vector and a per-metric rationale table (include the v4.0 SC/SI/SA rows, marked `—` for v3.1). Give the vector and qualitative **rating only — don't hand-compute the number** (the researcher gets it from the calculator). See [references/severity.md](references/severity.md). **Score the highest impact the evidence supports** — don't pre-apply downgrades — then add a "a triager may score lower if… (§clause)" caveat. Apply its metric conventions — PR by how the account is obtained (PR:N self-signup, PR:L invite-only, PR:H full admin), and AC:H for an unguessable value with no shown source (v4.0 AT:P). Keep the reasoning under the Severity block, **not** in Impact. **Cite any Intigriti standard or ruling by its clause — section number + name + link.**
+Every report includes a severity section — always read and follow [references/severity.md](references/severity.md). In short: both a CVSS v3.1 and v4.0 vector with a rationale table (SC/SI/SA marked `—` for v3.1), **vector + rating only, no hand-computed number**, scored at the **highest impact the evidence supports** with a "may score lower if… (§clause)" caveat, PR/AC conventions applied, reasoning kept under the Severity block (not Impact), and every Intigriti clause cited.
 
 ## Workflow
 
-### 1. Check the input
-Before drafting, confirm you have (or ask for, in one short list):
+Every report is assembled from separate modules: the shared skeleton [references/report-structure.md](references/report-structure.md), **one** flavor module, and the severity module. It is always **web + severity** or **product + severity** — never both flavors.
+
+### 1. Check the input and classify
+Classify the finding first: **web** (exploited over HTTP against a web app) or **product/non-web** (desktop, mobile, firmware, hardware, CLI, library). If it's unclear, ask.
+
+Then confirm you have (or ask for, in one short list):
 - Asset (in scope?) and vulnerability type
 - Vulnerable endpoint / parameter / feature location
 - Accounts, roles or config needed to reproduce, and how to obtain any tokens (JWT, CSRF, API key)
@@ -56,10 +60,13 @@ Also flag early:
 - **"Works but isn't valid" PoCs**: one that only works with security settings disabled, on a misconfigured replica, or on a code path not reachable from user input is likely closed as not applicable.
 - Use of real users' data instead of the hunter's own or program-provided test accounts.
 
-### 2. Draft and save the report
-Follow [references/report-structure.md](references/report-structure.md): submission-form order, **each field as its own fenced code block** (four-backtick fence where the content holds its own ``` block). That file carries the field rules — notably the **web-vs-product endpoint** (web: host+path, no protocol, `<>` params; product: the download URL), the **vulnerability type** as an exact label from [references/cwe-types.md](references/cwe-types.md), the `### Environment` block for product/non-web findings, one-action-per-line steps with image placeholders, the flexible **Request/Commands** part, evidence-cited **Observed result**, and `[TODO]`s for a missing download link or a hardware-dependent video PoC. **Save the whole report as `intigriti-report-<slug>.md`.** Keep the reply short: the `[TODO]`s and fixes.
+### 2. Read the modules
+Read, for this report: the shared skeleton [references/report-structure.md](references/report-structure.md); the matching flavor — [references/web.md](references/web.md) **or** [references/product.md](references/product.md); and [references/severity.md](references/severity.md). The skeleton gives the field order, the one-block-per-field output and the common fields; the flavor gives field 3 (Endpoint), the `### Environment` block and the Request/Commands content; severity gives the rating. Vulnerability type is an exact label from [references/cwe-types.md](references/cwe-types.md).
 
-### 3. Self-check before handing it back
+### 3. Draft and save the report
+Assemble the modules into the report: submission-form order, **each field as its own fenced code block** (four-backtick fence where content holds its own ``` block). **Save the whole report as `intigriti-report-<slug>.md`.** Keep the reply short: the `[TODO]`s and fixes.
+
+### 4. Self-check before handing it back
 Run the checklist in [references/review-checklist.md](references/review-checklist.md), then add a short **"Before you submit"** note listing any `[TODO]`s and reminding the hunter to re-run every step; they submit a validated report. End the **reply** (not the report) with one line: if their program requires a specific report format other than this one, they should tell you and you will regenerate in that format — some programs penalise or reject a wrong format.
 
 ## Reviewing an existing draft
