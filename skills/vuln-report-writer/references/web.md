@@ -7,6 +7,7 @@ Use this module together with [report-structure.md](report-structure.md) (shared
 - Positional/path parameters use **`<>` not `{}`**: `/programs/<program_uuid>`.
 - Multiple endpoints → separate with commas.
 - Injection point in a request-body parameter or a header → pipe syntax: `www.example.com/login.php | returnUrl=<PAYLOAD>`.
+- **GraphQL / RPC module**: the HTTP path alone is not enough — include the **operation/method name and the vulnerable parameter**. Examples: `api.example.com/graphql | mutation updateUserRole | role=<PAYLOAD>`, `api.example.com/rpc | Account.setEmail | email=<PAYLOAD>`.
 
 ## Environment
 Web findings do **not** use the `### Environment` block. Omit it.

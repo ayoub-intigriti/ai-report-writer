@@ -87,6 +87,11 @@ The AI-disclosure line is the **first sentence of the PoC/description block**, n
 ### 1. Title
 `[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>`, one line. Good: `[api.example.com] - IDOR - /api/v1/users/<id>/profile`. No generic titles, no descriptive sentences, no full URLs.
 
+**Abbreviate the vulnerability type** in the title (the full Intigriti CWE label still goes in field 4):
+- IDOR (Insecure Direct Object Reference), SSRF, CSRF, SSTI / CSTI, XXE, RCE, LFI / RFI, SQLi, NoSQLi, OSCi (OS command injection), SSI, CRLF, HPP, SSRF.
+- XSS by type: RXSS (reflected), SXSS (stored), DXSS (DOM), BXSS (blind), Self-XSS.
+- If a class has no established abbreviation, use its short common name (e.g. "Open Redirect", "Subdomain Takeover") rather than inventing an acronym.
+
 ### 3. Endpoint / vulnerable component
 Flavor-specific — derive it from the PoC and follow the module: [web.md](web.md) (host + path, no protocol, `<>` params) or [product.md](product.md) (product download URL).
 

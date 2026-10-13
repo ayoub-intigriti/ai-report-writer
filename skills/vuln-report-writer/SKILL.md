@@ -30,7 +30,7 @@ Always use exactly this structure, on one line:
 
 Example: `[api.example.com] - IDOR - /api/v1/users/<id>/profile`
 
-Never use a generic title, a descriptive sentence, or a full URL; keep the endpoint short. This format is mandatory even when drafting the rest from reference files.
+**Abbreviate the vulnerability type** with its common short form — IDOR, RXSS (reflected) / SXSS (stored) / DXSS (DOM), SSRF, CSRF, SQLi, RCE, LFI/RFI, SSTI, XXE, and so on (see [references/report-structure.md](references/report-structure.md) for more). The full Intigriti CWE label still goes in field 4, not the title. Never use a generic title, a descriptive sentence, or a full URL; keep the endpoint short. This format is mandatory even when drafting the rest from reference files.
 
 ## Severity (apply every time)
 
