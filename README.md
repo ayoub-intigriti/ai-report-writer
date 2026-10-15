@@ -23,7 +23,7 @@ You stay responsible for validating your finding and re-running every step befor
 ### Claude Code
 
 ```
-/plugin marketplace add intigriti/ai-report-writer
+/plugin marketplace add ayoub-intigriti/ai-report-writer
 /plugin install ai-report-writer@intigriti
 ```
 
@@ -34,7 +34,7 @@ Download [`skills/vuln-report-writer`](skills/vuln-report-writer) as a ZIP and u
 ### ChatGPT and Codex
 
 ```
-codex plugin marketplace add intigriti/ai-report-writer
+codex plugin marketplace add ayoub-intigriti/ai-report-writer
 ```
 
 Then open the Plugins Directory in the ChatGPT desktop app, pick the **Intigriti** marketplace and install **Intigriti Report Writer**.
