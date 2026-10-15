@@ -36,13 +36,16 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] GraphQL/RPC findings: endpoint includes the operation/method name and the vulnerable parameter
 - [ ] Product/non-web findings include the `### Environment` block (product+version, OS+version, architecture, dependencies; `[TODO]` for gaps)
 - [ ] A download step has its link, or a `[TODO: download URL]`; hardware-dependent repro has a `[TODO: video PoC]`
-- [ ] Observed result describes what's returned AND references the evidence (no "you should see the response")
+- [ ] Each request/command is inline under the step that uses it (no trailing Request section); the final step states the result and references the evidence (no "you should see the response")
 - [ ] Steps are one action per line; image placeholders added after complex steps
 - [ ] PoC/description content uses Markdown (`##` headings, lists)
 - [ ] Each field is its own code block; PoC/description uses a four-backtick fence; severity rationale + clause also folded into Impact
 - [ ] Recommended solution is 1–2 sentences; researcher reminded about mandatory submission questions
 - [ ] Screenshots referenced in the steps are listed in attachments
 - [ ] Script dependencies are minimal and from official sources
-- [ ] Prose is in Simplified Technical English (ASD-STE100): short active sentences, one instruction each, simple tenses; requests/payloads/vectors/labels left verbatim
+- [ ] Prose is in Simplified Technical English (ASD-STE100): short active sentences, one idea each, simple tenses; requests/payloads/vectors/labels left verbatim
+- [ ] No em-dashes or en-dashes (`—`/`–`) anywhere in the prose; long/multi-clause sentences split
+- [ ] Each behavior stated once: the outcome appears only in the final observe step, not also in the description or Impact
+- [ ] Logic/business-logic flaws lead with the concrete impact in the first sentence of the description
 - [ ] Professional and respectful tone
 - [ ] No leftover `[TODO]` placeholders (or they're called out to the hunter)

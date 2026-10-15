@@ -40,7 +40,7 @@ CWE-639 Insecure Direct Object Reference (Broken Access Control)
 CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N                    → High
 CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N → High
 ```
-Paste each vector into the FIRST calculator for the exact score. Reasoning (reference): PR:N because accounts are open self-signup; AC:L because invoice IDs are sequential and predictable; Confidentiality High because the PoC returns full cross-tenant invoice data (the maximum demonstrated). A triager may score Confidentiality Low if the exposed fields turn out to be non-sensitive or already public, per Triage Standards §3.1.6 (multi-tenant partial access-control bypass) — https://kb.intigriti.com/en/articles/10335710-intigriti-triage-standards
+Paste each vector into the FIRST calculator for the exact score. Reasoning (reference): PR:N because accounts are open self-signup; AC:L because invoice IDs are sequential and predictable; Confidentiality High because the PoC returns full cross-tenant invoice data (the maximum demonstrated). A triager may score Confidentiality Low if the exposed fields turn out to be non-sensitive or already public, per Triage Standards §3.1.6 (multi-tenant partial access-control bypass). Source: https://kb.intigriti.com/en/articles/10335710-intigriti-triage-standards
 
 **6.1 Attachments** (upload each; referenced in the PoC)
 - screenshot-1.png: Victim's invoice list showing ID 48213
@@ -66,17 +66,14 @@ The invoice PDF endpoint returns any invoice by its numeric ID. It does not chec
 7. Click "Download PDF" on one of your own invoices.
 8. Intercept the request with a proxy.
 9. Change the invoice ID to 48213.
-10. Send the request:
 <!-- Add screenshot of the modified request in the proxy -->
-
+10. Send the request below.
 ```http
 GET /api/v2/invoices/48213/pdf HTTP/2
 Host: app.example.com
 Cookie: session=<Attacker's session cookie>
 ```
-
-## Observed result
-The server returns `200 OK` with Victim's invoice PDF. The response shows the organization name "Acme GmbH", the billing address, and three line items. The total is €4,210. None of this data belongs to the Attacker. See screenshot-2.png and poc-video.mp4 at 0:38.
+11. Observe that the server returns `200 OK` with Victim's invoice PDF. The response shows the organization name "Acme GmbH", the billing address, and three line items. The total is €4,210. None of this data belongs to the Attacker. See screenshot-2.png and poc-video.mp4 at 0:38.
 <!-- Add screenshot of the 200 response showing another organization's invoice -->
 ````
 

@@ -3,7 +3,7 @@
 Write all **prose** in the report in ASD-STE100 Simplified Technical English: short, unambiguous, one idea at a time. This makes reports easy for triagers to read, including non-native English speakers.
 
 ## Where STE applies
-Apply STE to the writing you generate: the **description**, **steps**, **observed result**, **impact**, and **recommended solution**.
+Apply STE to the writing you generate: the **description**, **steps** (including the final observe step), **impact**, and **recommended solution**.
 
 **Do NOT alter** (copy verbatim, STE does not apply): raw HTTP/TCP requests and payloads, scripts, CVSS vectors, the CWE label, the endpoint string, URLs and filenames, and the fixed AI-disclosure sentence. Never reword a payload to "simplify" it.
 
@@ -14,6 +14,11 @@ Apply STE to the writing you generate: the **description**, **steps**, **observe
 - Descriptive sentences (description, impact, observations): **25 words maximum**.
 - One instruction per sentence. One topic per sentence.
 - Paragraphs: **6 sentences maximum**, one topic each.
+
+**Punctuation (enforced)**
+- **No em-dashes or en-dashes.** Never use `—` or `–` to join clauses, add an aside, or stand in for a colon. Write two short sentences, or use a comma for a simple list. Em-dashes are the main cause of long, hard-to-follow sentences.
+- A sentence that contains a dash, a semicolon, "which", "so that", or two linked clauses is doing two jobs. Split it into separate sentences.
+- No parentheical asides stacked inside a sentence. Put the aside in its own sentence, or cut it.
 
 **Voice and structure**
 - Use the **active voice** ("The server returns the invoice", not "The invoice is returned").
@@ -37,3 +42,12 @@ Apply STE to the writing you generate: the **description**, **steps**, **observe
 ## Quick before/after
 - Before: "By manipulating the identifier, an attacker would be able to retrieve invoices belonging to other organizations that should not have been accessible."
 - After (STE): "Change the invoice ID in the request. The server returns an invoice from a different organization. The attacker must not have access to it."
+- Before (em-dash): "The payload runs on page load — no further clicks are required."
+- After (STE): "The payload runs on page load. The victim does not click anything."
+
+## Final re-read (do this every time)
+After you draft the prose, read each sentence once more and fix it before you hand the report over:
+1. Over the word limit (20 procedural / 25 descriptive)? Split it.
+2. Contains `—`, `–`, a semicolon, "which", or "so that"? Split it into separate sentences.
+3. Two actions or two ideas in one sentence? Split it.
+4. Says something a different section already says? Remove the repeat (see report-structure.md: each behavior appears once).

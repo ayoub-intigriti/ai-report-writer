@@ -12,10 +12,10 @@ Use this module together with [report-structure.md](report-structure.md) (shared
 ## Environment
 Web findings do **not** use the `### Environment` block. Omit it.
 
-## PoC — Request / Commands
-- Include the **raw HTTP request verbatim**.
-- Also include any commands the researcher must run to prepare a value — e.g. `openssl` to generate a base64 string or a secret. These are common in web PoCs.
-- Always include the raw request even when a script is attached. Keep payloads verbatim; never host evidence externally.
+## PoC — requests and commands
+- Put each **raw HTTP request** inline, directly under the step that sends it (not in a trailing section). A multi-request chain reads step, request, step, request.
+- Include any commands the researcher must run to prepare a value, e.g. `openssl` to generate a base64 string or a secret, under their step too. These are common in web PoCs.
+- Always include the raw request even when a script is attached. Keep payloads verbatim. Never host evidence externally.
 
 ## Example (web-specific fields)
 ```
