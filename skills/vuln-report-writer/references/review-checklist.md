@@ -8,7 +8,7 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] PoC is the hunter's validated PoC, unchanged; no placeholder or untested payloads
 - [ ] PoC works against the target in its intended configuration (not a misconfigured replica, not with protections disabled, reachable from user input)
 - [ ] Steps are complete, numbered, in order, with every parameter value and header that matters
-- [ ] Requirements listed first: accounts/roles, config, how to get tokens
+- [ ] Requirements are only mandatory when the hunter provided them. When provided and not self-explanatory, list them first: accounts/roles, config, how to get tokens. Do not ask for or invent requirements the hunter did not provide
 - [ ] Raw HTTP/TCP request included, not just a script
 - [ ] Impact only claims what the evidence shows; no speculative scenarios
 - [ ] Testing used the hunter's own or program-provided test accounts
@@ -20,9 +20,9 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] Report saved as a Markdown file and handed to the researcher
 
 ## Quality issues
-- [ ] Title follows `[asset] - type - endpoint`, one line, no full URL
+- [ ] Title follows `[asset] - type - endpoint`, one line, no full URL, never longer than 90 characters (shorten the endpoint first), parameters in `<>` (`<PAYLOAD>` when the placeholder type is unknown)
 - [ ] Description is 2–4 sentences: states the flaw plainly, no vulnerability-class lecture, no explanation of web mechanics (CORS, preflight, SameSite, cookies) unless that is the bug
-- [ ] Requirements section appears only for a concrete prerequisite the steps don't already show; omitted otherwise; never previews the attack chain or caveats
+- [ ] Requirements section appears only for a prerequisite that is not self-explanatory; omitted for things anyone has (an account anyone can create, a normal working web browser, an internet connection); never previews the attack chain or caveats
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
 - [ ] Severity scored at the highest impact the evidence supports, with "may score lower if… (§clause)" caveats; both CVSS v3.1 and v4.0 vectors given; rationale table includes SC/SI/SA (— for v3.1); vector + rating only, no hand-computed number
@@ -33,7 +33,7 @@ Run this on every report you draft or review. Report problems most important fir
 - [ ] No filler notes (nothing stating the absence of something irrelevant); non-applicable sections omitted
 - [ ] Output follows the submission-form order; vulnerability type is an exact label from cwe-types.md
 - [ ] Title uses the abbreviated vulnerability type (IDOR, RXSS, SSRF, …); full CWE label is in field 4, not the title
-- [ ] Endpoint: web = host + path, no protocol, `<>` for positional params; product/non-web = product download URL (or `[TODO]`)
+- [ ] Endpoint: web = host + path, no protocol, `<>` for positional params (`<PAYLOAD>` when the placeholder type is unknown); product/non-web = product download URL (or `[TODO]`)
 - [ ] GraphQL/RPC findings: endpoint includes the operation/method name and the vulnerable parameter
 - [ ] Product/non-web findings include the `### Environment` block (product+version, OS+version, architecture, dependencies; `[TODO]` for gaps)
 - [ ] A download step has its link, or a `[TODO: download URL]`; hardware-dependent repro has a `[TODO: video PoC]`

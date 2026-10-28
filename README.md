@@ -1,9 +1,8 @@
 # Intigriti AI Report Writer
 
-Intigriti AI Report Writer is a skill for Claude and ChatGPT to help bug bounty hunters write clear, concise vulnerability reports that triagers can reproduce on the first try. This plugin is also capable of flagging common pitfalls before submitting your report.
+A skill for Claude and ChatGPT that helps bug bounty hunters write clear, concise vulnerability reports that triagers can reproduce on the first try, and review drafts before they're submitted.
 
 It's built on Intigriti's report-writing guidance:
-- [How to write a good report​​​​‌](https://www.intigriti.com/researchers/hackademy/guides/how-to-write-a-good-report)
 - [How to use AI for improved vulnerability report writing](https://www.intigriti.com/researchers/blog/hacking-tools/vulnerability-report-writing-with-ai)
 - [Bug Bounty Starter Kit](https://www.intigriti.com/bug-bounty-starter-kit)
 
@@ -23,7 +22,7 @@ You stay responsible for validating your finding and re-running every step befor
 ### Claude Code
 
 ```
-/plugin marketplace add ayoub-intigriti/ai-report-writer
+/plugin marketplace add intigriti/ai-report-writer
 /plugin install ai-report-writer@intigriti
 ```
 
@@ -34,7 +33,7 @@ Download [`skills/vuln-report-writer`](skills/vuln-report-writer) as a ZIP and u
 ### ChatGPT and Codex
 
 ```
-codex plugin marketplace add ayoub-intigriti/ai-report-writer
+codex plugin marketplace add intigriti/ai-report-writer
 ```
 
 Then open the Plugins Directory in the ChatGPT desktop app, pick the **Intigriti** marketplace and install **Intigriti Report Writer**.
@@ -76,5 +75,7 @@ Just describe your finding. The skill activates automatically:
         ├── ai-pitfalls.md         # Common problems in AI-written reports
         └── example-report.md      # Weak vs. good report (web)
 ```
+
+A report is composed from the shared skeleton + one flavor (`web.md` or `product.md`) + `severity.md`.
 
 To update the guidance, edit the files in `skills/vuln-report-writer/` and bump `version` in both `plugin.json` files.

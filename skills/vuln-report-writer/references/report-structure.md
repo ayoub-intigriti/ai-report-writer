@@ -1,16 +1,16 @@
 # Report structure (shared skeleton)
 
-This is the **shared** skeleton used by both flavors. Combine it with exactly one flavor module — [web.md](web.md) **or** [product.md](product.md) — plus [severity.md](severity.md). The flavor module defines field 3 (Endpoint), the `### Environment` block, and the PoC Request/Commands content; everything else is here.
+This is the **shared** skeleton used by both flavors. Combine it with exactly one flavor module ([web.md](web.md) **or** [product.md](product.md)) plus [severity.md](severity.md). The flavor module defines field 3 (Endpoint), the `### Environment` block, and the PoC Request/Commands content; everything else is here.
 
 Output the report as **Markdown**, in the exact order of Intigriti's submission form, so the researcher can copy each section straight into the matching field. Use the headers below verbatim. Keep every part as short as it can be while still letting a triager reproduce the finding without guesswork.
 
 **Always save the finished report as a Markdown file** (e.g. `intigriti-report-<slug>.md`) and hand that file to the researcher, so they open it and copy each field without reformatting the rendered chat. Each `###` header maps to a form field; the text under it is what goes in that field.
 
-Field 2 (Asset) is chosen from a radio list in the UI, so there is nothing to generate for it — skip it.
+Field 2 (Asset) is chosen from a radio list in the UI, so there is nothing to generate for it, so skip it.
 
 ## Output: one code block per field
 
-Emit each form field as its **own fenced code block** so the researcher clicks copy once and pastes straight into that field — nothing to strip. Put a short bold label *outside* each block (labels aren't copied). Text fields: Title, Endpoint, CWE, Proof of Concept / description, Impact, Recommended solution. Severity is a CVSS calculator, and Attachments are uploads — handle those as noted below, not as paste targets.
+Emit each form field as its **own fenced code block** so the researcher clicks copy once and pastes straight into that field, with nothing to strip. Put a short bold label *outside* each block (labels aren't copied). Text fields: Title, Endpoint, CWE, Proof of Concept / description, Impact, Recommended solution. Severity is a CVSS calculator, and Attachments are uploads. Handle those as noted below, not as paste targets.
 
 **Fence rule:** when a field's content contains its own ``` block (the PoC/description holds the raw ```http request), wrap that field in a **four-backtick** fence so the inner fence doesn't close it early. Fields with no inner fence use a normal three-backtick fence.
 
@@ -21,9 +21,9 @@ Produce the blocks in this order:
 [<asset>] - <vulnerability type> - <endpoint>
 ```
 
-**3. Endpoint / vulnerable component** — format depends on the flavor; see [web.md](web.md) or [product.md](product.md).
+**3. Endpoint / vulnerable component**: format depends on the flavor; see [web.md](web.md) or [product.md](product.md).
 ```
-<web: host + path, no protocol, <> params — product: the download URL>
+<web: host + path, no protocol, <> params; product: the download URL>
 ```
 
 **4. Vulnerability type (CWE)**
@@ -31,23 +31,23 @@ Produce the blocks in this order:
 <exact label from cwe-types.md, e.g. CWE-639 Insecure Direct Object Reference (Broken Access Control)>
 ```
 
-**5. Severity** — set the CVSS calculator to these vectors (no text field for this):
+**5. Severity**: set the CVSS calculator to these vectors (no text field for this):
 ```
 CVSS:3.1/<vector>   → <rating>
 CVSS:4.0/<vector>   → <rating>
 ```
-Score the **highest impact the evidence supports** and apply the PR/AC conventions in [severity.md](severity.md); give the vector and rating, not a hand-computed number. Under the block, as plain reference text (for the researcher, not a field): the per-metric reasoning, any triage-standards clause, and any "a triager may score lower if… (§clause)" caveat. This reasoning stays here only — do **not** repeat it in the Impact field.
+Score the **highest impact the evidence supports** and apply the PR/AC conventions in [severity.md](severity.md); give the vector and rating, not a hand-computed number. Under the block, as plain reference text (for the researcher, not a field): the per-metric reasoning, any triage-standards clause, and any "a triager may score lower if… (§clause)" caveat. This reasoning stays here only. Do **not** repeat it in the Impact field.
 
-**6.1 Attachments** — uploaded on the form, not pasted. List them as a checklist so the researcher attaches each and references them in the PoC field:
+**6.1 Attachments**: uploaded on the form, not pasted. List them as a checklist so the researcher attaches each and references them in the PoC field:
 - <screenshot-1.png: what it shows>
 
-**6.2 Proof of Concept / description** (four-backtick fence; the field is a Markdown editor, so format the content with Markdown — `##` headings, lists, code fences):
+**6.2 Proof of Concept / description** (four-backtick fence; the field is a Markdown editor, so format the content with Markdown, using `##` headings, lists and code fences):
 ````
-This report was generated by Intigriti AI Report Writer for Claude.
+This report was generated by Intigriti AI Report Writer.
 
 <Description: 2–4 sentences on the flaw and why it should not be possible. State the flaw in plain terms, not the reproduction outcome (that goes in the final step) and not the underlying web mechanics (see the description rules below). For a logic or business-logic flaw, make the first sentence the concrete impact. See the impact-first rule below.>
 
-<## Requirements — include this section ONLY if there is a concrete prerequisite the steps do not already make obvious. See the requirements rules below. Omit the heading entirely when the only prerequisite is an authenticated session.>
+<## Requirements. Include this section ONLY if the hunter provided a prerequisite that is not self-explanatory. See the requirements rules below. Omit the heading entirely when the only prerequisites are things anyone has (an account anyone can create, a normal working web browser, an internet connection).>
 - <a specific account or role, and how to obtain a required token>
 - <if a download is needed: the link if it was shared, else [TODO: download URL]>
 
@@ -57,7 +57,7 @@ This report was generated by Intigriti AI Report Writer for Claude.
 1. <one action per line. Each step is an action the triager performs.>
 2. <an action that sends a request or runs a command: write the step, then put the request or command on its own lines directly beneath it.>
 ```http
-<raw HTTP request, verbatim — a web finding; a command/input/crash output for product>
+<raw HTTP request, verbatim, for a web finding; a command/input/crash output for product>
 ```
 3. <the final step states the result. "Observe that…" / "Notice that…" is the right form. Describe exactly what the app did: status, the specific fields or data returned, the behavior seen. Reference the evidence (for example "see screenshot-2.png" or "poc-video.mp4 at 0:42"). Never write "you should see the response".>
 <!-- Add screenshot of <PAGE/action/HTTP response> -->
@@ -80,52 +80,52 @@ The "fires on page load", "returns another user's data" type sentence belongs in
 ```
 <What an attacker can demonstrably do, based on the evidence above.>
 ```
-(No severity line here — the severity reasoning stays under the Severity block.)
+(No severity line here. The severity reasoning stays under the Severity block.)
 
 **6.4 Recommended solution**
 ```
 <1–2 sentences, no more.>
 ```
 
-**7. Submission questions** — not a paste field. Remind the researcher to check the form for mandatory questions (e.g. public IP, time of testing) and fill them in; a missing mandatory answer can incur a bounty penalty.
+**7. Submission questions**: not a paste field. Remind the researcher to check the form for mandatory questions (e.g. public IP, time of testing) and fill them in; a missing mandatory answer can incur a bounty penalty.
 
-The AI-disclosure line is the **first sentence of the PoC/description block**, not a footer, so it lands inside a submitted field. Replace "Claude" with whichever assistant is running the skill (Claude, ChatGPT or Codex). Also save the whole thing as the `.md` file (above) for researchers who prefer a file.
+The AI-disclosure line is the **first sentence of the PoC/description block**, not a footer, so it lands inside a submitted field. Also save the whole thing as the `.md` file (above) for researchers who prefer a file.
 
 ## Field rules
 
 ### 1. Title
-`[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>`, one line. Good: `[api.example.com] - IDOR - /api/v1/users/<id>/profile`. No generic titles, no descriptive sentences, no full URLs.
+`[<ASSET>] - <Vulnerability Type> - <Endpoint or short description>`, one line. Good: `[api.example.com] - IDOR - /api/v1/users/<id>/profile`. No generic titles, no descriptive sentences, no full URLs. **The title is never longer than 90 characters**, counted over the whole line (brackets, dashes and spaces included). If it is longer, shorten the endpoint part first. Write parameters as `<id>`, never `{id}`. If you do not know what the placeholder stands for, use `<PAYLOAD>`.
 
 **Abbreviate the vulnerability type** in the title (the full Intigriti CWE label still goes in field 4):
-- IDOR (Insecure Direct Object Reference), SSRF, CSRF, SSTI / CSTI, XXE, RCE, LFI / RFI, SQLi, NoSQLi, OSCi (OS command injection), SSI, CRLF, HPP, SSRF.
+- IDOR (Insecure Direct Object Reference), SSRF, CSRF, SSTI / CSTI, XXE, RCE, LFI / RFI, SQLi, NoSQLi, OSCi (OS command injection), SSI, CRLF, HPP.
 - XSS by type: RXSS (reflected), SXSS (stored), DXSS (DOM), BXSS (blind), Self-XSS.
 - If a class has no established abbreviation, use its short common name (e.g. "Open Redirect", "Subdomain Takeover") rather than inventing an acronym.
 
 ### 3. Endpoint / vulnerable component
-Flavor-specific — derive it from the PoC and follow the module: [web.md](web.md) (host + path, no protocol, `<>` params) or [product.md](product.md) (product download URL).
+Flavor-specific. Derive it from the PoC and follow the module: [web.md](web.md) (host + path, no protocol, `<>` params) or [product.md](product.md) (product download URL).
 
 ### 4. Vulnerability type (CWE)
-Choose the type from [cwe-types.md](cwe-types.md) — those are the only labels Intigriti's form accepts. Output the label **exactly**, including its `(Category)`, and use Intigriti's wording (CWE-639 is "Insecure Direct Object Reference" here). Prefer the category matching the finding and the program's Type grouping; the same CWE may appear under several categories. If two fit, name the best and mention the alternative.
+Choose the type from [cwe-types.md](cwe-types.md). Those are the only labels Intigriti's form accepts. Output the label **exactly**, including its `(Category)`, and use Intigriti's wording (CWE-639 is "Insecure Direct Object Reference" here). Prefer the category matching the finding and the program's Type grouping; the same CWE may appear under several categories. If two fit, name the best and mention the alternative.
 
 ### 5. Severity
-Both CVSS v3.1 and v4.0 vectors with scores and a short rationale — see [severity.md](severity.md). Whenever you invoke an Intigriti standard or ruling, cite the specific clause.
+Both CVSS v3.1 and v4.0 vectors with scores and a short rationale (see [severity.md](severity.md)). Whenever you invoke an Intigriti standard or ruling, cite the specific clause.
 
 ### 6.2 Proof of Concept / description
 The form merges description and PoC into one field, so put them together here: description, then (only if needed) requirements, then numbered steps.
 
-**Description rules.** 2–4 sentences. State the flaw and why it matters, in plain terms. Do **not** explain the underlying web-platform mechanics — CORS, preflight requests, the same-origin policy, how cookies or `SameSite` work, content-type handling — unless that mechanism is itself the vulnerability. If a mechanism detail only matters for building the PoC (for example "the form uses `enctype=text/plain`"), it belongs in the relevant step, not the description. The test: would the triager understand what is broken and why without this sentence? If yes, cut it. No lecture on the vulnerability class.
+**Description rules.** 2–4 sentences. State the flaw and why it matters, in plain terms. Do **not** explain the underlying web-platform mechanics (CORS, preflight requests, the same-origin policy, how cookies or `SameSite` work, content-type handling) unless that mechanism is itself the vulnerability. If a mechanism detail only matters for building the PoC (for example "the form uses `enctype=text/plain`"), it belongs in the relevant step, not the description. The test: would the triager understand what is broken and why without this sentence? If yes, cut it. No lecture on the vulnerability class.
 
-**Requirements rules.** This section is optional. Include it only for a concrete prerequisite the steps do not already make obvious: a specific account or role, two separate accounts, a token and how to obtain it, a required configuration, or (product) the `### Environment` block — see [product.md](product.md). Omit the heading entirely when the only prerequisite is an authenticated session. Never use Requirements to preview the attack chain, restate a severity precondition, or add caveats; those belong in the step that needs them, the severity reasoning, or Impact.
+**Requirements rules.** This section is optional. It is only mandatory when the hunter provided requirements that are not self-explanatory. Include it for a specific account or role, two separate accounts, a token and how to obtain it, a required configuration, or (product) the `### Environment` block (see [product.md](product.md)). Omit the heading entirely when the only prerequisites are things anyone has, such as an account anyone can create, a normal working web browser or an internet connection. Never use Requirements to preview the attack chain, restate a severity precondition, or add caveats; those belong in the step that needs them, the severity reasoning, or Impact.
 
 Then the numbered steps (the **simplest path to reproduction**, per Triage Standards §1.1), each request or command placed inline under the step that uses it (flavor module decides the content), ending with a step that states the result and references the evidence. Validate the steps yourself first, ideally with fresh test accounts or a clean instance. Scripts: minimal dependencies, nothing from untrusted sources.
 
 ### 6.3 Impact
 Short and specific: what an attacker can demonstrably do, based on the evidence. Never overstate; no speculative scenarios. For issues where program rules forbid disruptive testing, demonstrate the minimum and note you stopped there. The triager then scores on potential impact and the company may adjust severity later (Triage Standards §1.2).
 
-**Logic and business-logic flaws — lead with the impact.** For a logic flaw (CWE-840 Business Logic Error and similar), the mechanics alone do not show severity, so the concrete real-world impact must come first. Make the **first sentence of the description** state what the attacker gains in plain terms: money, free or discounted goods, another user's access or data, a bypassed limit or quota, a skipped payment or verification step. Then explain the flaw. The Impact field restates that gain and its scale (per transaction, per account, unlimited). Example first sentence: "An attacker buys any item for 0.01 by changing the price field in the checkout request."
+**Logic and business-logic flaws: lead with the impact.** For a logic flaw (CWE-840 Business Logic Error and similar), the mechanics alone do not show severity, so the concrete real-world impact must come first. Make the **first sentence of the description** state what the attacker gains in plain terms: money, free or discounted goods, another user's access or data, a bypassed limit or quota, a skipped payment or verification step. Then explain the flaw. The Impact field restates that gain and its scale (per transaction, per account, unlimited). Example first sentence: "An attacker buys any item for 0.01 by changing the price field in the checkout request."
 
 ### 6.4 Recommended solution
 Optional in the form; keep to 1–2 sentences max.
 
 ### Attachments
-Everything uploaded to the platform: PoC scripts, every screenshot referenced in the steps, video where applicable, raw requests. Never third-party hosts — see [code-of-conduct.md](code-of-conduct.md).
+Everything uploaded to the platform: PoC scripts, every screenshot referenced in the steps, video where applicable, raw requests. Never third-party hosts (see [code-of-conduct.md](code-of-conduct.md)).

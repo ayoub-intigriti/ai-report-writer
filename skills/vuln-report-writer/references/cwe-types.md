@@ -1,6 +1,8 @@
 # Supported vulnerability types (Intigriti)
 
-Field 4 (Vulnerability type) must be **one of the labels below** — these are the only types Intigriti's form accepts. Output the label exactly as written, including its category in parentheses. The same CWE can appear under several categories (e.g. CWE-639 under Mobile, Broken Access Control and Access Control Issues); pick the one whose category matches the finding and the program's own Type grouping. If several fit, name the best match and mention the alternative. Use Intigriti's wording, not MITRE's (e.g. CWE-639 is "Insecure Direct Object Reference" here, not "Authorization Bypass Through User-Controlled Key").
+Field 4 (Vulnerability type) must be **one of the labels below**. These are the only types Intigriti's form accepts. Output the label exactly as written, including its category in parentheses. The same CWE can appear under several categories (e.g. CWE-639 under Mobile, Broken Access Control and Access Control Issues); pick the one whose category matches the finding and the program's own Type grouping. If several fit, name the best match and mention the alternative. Use Intigriti's wording, not MITRE's (e.g. CWE-639 is "Insecure Direct Object Reference" here, not "Authorization Bypass Through User-Controlled Key").
+
+Source: Intigriti submission form vulnerability type list. Snapshot date: not recorded yet (add the date the list was copied from the form). The list rarely changes, but re-check the live form before each release.
 
 ```
 Remote Code Execution (Other)
@@ -37,7 +39,7 @@ Subdomain Takeover (Other)
 Web Cache Deception (Other)
 Host Header Injection (Other)
 HTML Injection (Other)
-CWE 602 Client-Side Enforcement of Server-Side Security (Other)
+CWE-602 Client-Side Enforcement of Server-Side Security (Other)
 CWE-776 XML Entity Expansion (Other)
 CWE-125 Out-of-bounds read (Other)
 CWE-122 Heap Overflow (Other)
@@ -97,7 +99,6 @@ CWE-657 Violation of Secure Design Principles (Mobile)
 CWE-620 Unverified Password Change (Mobile)
 CWE-922 Insecure Storage of Sensitive Information (Mobile)
 CWE-325 Missing Required Cryptographic Step (Mobile)
-CWE-613 Insufficient Session Expiration (Mobile)
 CWE-190 Integer Overflow (Mobile)
 Injection (Generic) (Mobile)
 Security Misconfiguration (Generic) (Mobile)
@@ -147,7 +148,6 @@ CWE-798 Use of Hard-coded Credentials (Broken Authentication)
 CWE-256 Plaintext Storage of a Password (Broken Authentication)
 CWE-307 Brute Force (Broken Authentication)
 CWE-620 Unverified Password Change (Broken Authentication)
-CWE-613 Insufficient Session Expiration (Broken Authentication)
 CWE-522 Insufficiently Protected Credentials (Broken Authentication)
 CWE-260 Password in Configuration File (Broken Authentication)
 CWE-784 Reliance on Cookies without Validation and Integrity Checking in a Security Decision (Broken Authentication)

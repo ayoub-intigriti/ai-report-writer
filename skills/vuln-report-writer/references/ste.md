@@ -23,7 +23,7 @@ Apply STE to the writing you generate: the **description**, **steps** (including
 **Voice and structure**
 - Use the **active voice** ("The server returns the invoice", not "The invoice is returned").
 - Use passive only in descriptive text when the actor is unknown.
-- Do not omit the verb, subject, or article to shorten a sentence — keep "the", "a", "an".
+- Do not omit the verb, subject, or article to shorten a sentence. Keep "the", "a", "an".
 - Start each instruction with a command verb ("Send the request", "Log in as Victim").
 - Use vertical (numbered or bulleted) lists for anything with several parts.
 
@@ -36,7 +36,7 @@ Apply STE to the writing you generate: the **description**, **steps** (including
 **Words**
 - One word, one meaning; prefer the simplest word that is accurate.
 - Keep a multi-word noun to **three words maximum**.
-- No slang, idioms, or filler. Keep security terms (IDOR, token, endpoint) — those are technical vocabulary.
+- No slang, idioms, or filler. Keep security terms (IDOR, token, endpoint). Those are technical vocabulary.
 - Be consistent: use the same word for the same thing throughout (don't switch between "attacker" and "adversary").
 
 ## Quick before/after
