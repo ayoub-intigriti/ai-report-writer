@@ -21,7 +21,8 @@ Run this on every report you draft or review. Report problems most important fir
 
 ## Quality issues
 - [ ] Title follows `[asset] - type - endpoint`, one line, no full URL
-- [ ] Description is 2–4 sentences, no vulnerability-class lecture
+- [ ] Description is 2–4 sentences: states the flaw plainly, no vulnerability-class lecture, no explanation of web mechanics (CORS, preflight, SameSite, cookies) unless that is the bug
+- [ ] Requirements section appears only for a concrete prerequisite the steps don't already show; omitted otherwise; never previews the attack chain or caveats
 - [ ] Navigation path given for features deep in the app
 - [ ] No unnecessary steps, filler or verbose logs
 - [ ] Severity scored at the highest impact the evidence supports, with "may score lower if… (§clause)" caveats; both CVSS v3.1 and v4.0 vectors given; rationale table includes SC/SI/SA (— for v3.1); vector + rating only, no hand-computed number
